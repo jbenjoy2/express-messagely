@@ -41,7 +41,8 @@ app.use(function(err, req, res, next) {
 
 	return res.status(status).json({
 		error : {
-			status : err.status
+			status  : err.status,
+			message : err.message
 		}
 	});
 });
