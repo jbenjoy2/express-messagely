@@ -21,9 +21,10 @@ const { user } = require('../db');
 router.get('/:id', ensureLoggedIn, async (req, res, next) => {
 	try {
 		const username = req.user.username;
+		console.log(username);
 		const message = await Message.get(req.params.id);
-
-		if (message.from_user !== username && message.to_user !== username) {
+		console.log(message.from_user);
+		if (message.from_user.username !== username && message.to_user.username !== username) {
 			throw new ExpressError('Not permitted to read this message', 401);
 		}
 		return res.json(message);
